@@ -1,0 +1,58 @@
+name: Build and Push to ECR
+
+on:
+  push:
+    branches:
+      - staging
+  workflow_dispatch: # Allows manual triggering
+
+env:
+  AWS_REGION: eu-west-2
+  ECR_REPOSITORY: rev-frontend-staging
+
+jobs:
+  build-and-push:
+    name: Build Docker Image and Push to ECR
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Configure AWS credentials
+        uses: aws-actions/configure-aws-credentials@v4
+        with:
+          aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          aws-region: ${{ env.AWS_REGION }}
+
+      - name: Login to Amazon ECR
+        id: login-ecr
+        uses: aws-actions/amazon-ecr-login@v2
+
+      - name: Build, tag, and push image to Amazon ECR
+        id: build-image
+        env:
+          ECR_REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+          IMAGE_TAG: ${{ github.sha }}
+        run: |
+          # Build Docker image with build args
+          docker build \
+            --build-arg NEXT_PUBLIC_API_BASE_URL=https://staging-api.revs.gg/api/v1/ \
+            --build-arg NEXT_PUBLIC_CDN_URL=https://d1sdj94qdia6yh.cloudfront.net \
+            --build-arg NEXT_PUBLIC_ALLOWED_DOMAIN=staging.revs.gg \
+            --build-arg NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY=pk_test_51RjhMzPfWSjK5runfYnTYmtF1t5p4ITZCUVvkqn4UE5scp0sNpHmpxalFF09yt6hUvGiGsXS8ZvwZdpiQWUcp1tc00p3xFwqFS \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG \
+            -t $ECR_REGISTRY/$ECR_REPOSITORY:latest \
+            .
+
+          # Push both tags
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG
+          docker push $ECR_REGISTRY/$ECR_REPOSITORY:latest
+
+          echo "image=$ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG" >> $GITHUB_OUTPUT
+          echo "✅ Docker image built and pushed successfully!"
+          echo "Image: $ECR_REGISTRY/$ECR_REPOSITORY:$IMAGE_TAG"
+          echo "Image (latest): $ECR_REGISTRY/$ECR_REPOSITORY:latest"
+          echo "Commit: ${{ github.sha }}"
+

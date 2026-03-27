@@ -1,0 +1,330 @@
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@100..900&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap');
+@import "tailwindcss";
+
+@font-face {
+  font-family: Farsan;
+  src: url("../../public/assets/fonts/Farsan-Regular.ttf");
+}
+
+@font-face {
+  font-family: Bebas;
+  src: url("../../public/assets/fonts/BebasNeue-Regular.ttf");
+}
+
+@font-face {
+  font-family: Sora;
+  src: url("../../public/assets/fonts/Sora-Regular.ttf");
+}
+
+@font-face {
+  font-family: Freeman;
+  src: url("../../public/assets/fonts/Freeman-Regular.ttf");
+}
+
+@font-face {
+  font-family: PublicSans;
+  src: url("../../public/assets/fonts/PublicSans-Regular.ttf");
+}
+
+@theme {
+  --font-NotoSansJP: "Noto Sans JP", "sans-serif";
+  --font-Farsan: "Farsan", "sans-serif";
+  --font-Bebas: "Bebas", "sans-serif";
+  --font-Sora: "Sora", "sans-serif";
+  --font-Freeman: "Freeman", "sans-serif";
+  --font-PublicSans: "PublicSans", "sans-serif";
+}
+
+@layer utilities {
+  @keyframes float {
+
+    0%,
+    100% {
+      transform: translateY(0) rotate(-29.624deg);
+    }
+
+    50% {
+      transform: translateY(-15px) rotate(-29.624deg);
+    }
+  }
+
+  .animate-float {
+    animation: float 4s ease-in-out infinite;
+  }
+}
+
+.sunShadow {
+  transition: box-shadow 0.5s ease-in-out;
+}
+
+.sunShadow:hover {
+  box-shadow: -19.012px 5.67px 50.931px 0px rgba(237, 155, 23, 0.4);
+}
+
+.mask-fade {
+  -webkit-mask-image: radial-gradient(ellipse at center, white 0%, rgba(255, 255, 255, 0.8) 40%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse at center, white 0%, rgba(255, 255, 255, 0.5) 40%, rgba(255, 255, 255, 0.1) 60%, transparent 100%);
+  -webkit-mask-repeat: no-repeat;
+  mask-repeat: no-repeat;
+  -webkit-mask-size: cover;
+  mask-size: cover;
+}
+
+.box {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.box:hover {
+  transform: scale(1.03);
+  box-shadow: 0 0 8px 4px rgba(217, 200, 17, 0.4);
+}
+
+.transition-width {
+  transition: width 0.3s ease;
+}
+
+.font-circular {
+  font-family: var(--font-circular), Arial, sans-serif !important;
+}
+
+.Toastify__progress-bar .Toastify__progress-bar-theme--dark {
+  background-color: #824104 !important;
+}
+
+.Toastify__progress-bar-theme--dark {
+  background-color: #824104 !important;
+}
+
+.font-sora {
+  font-family: var(--font-sora), Arial, sans-serif !important;
+}
+
+.font-noto-sans-jp {
+  font-family: var(--font-noto-sans-jp), Arial, sans-serif !important;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+
+.react-tabs__tab--selected {
+  background: none !important;
+  border: 0 !important;
+  border-color: 0 !important;
+  border-radius: 0 !important;
+  color: white !important;
+}
+
+.react-tabs__tab-list {
+  border-bottom: 1px solid #88724B !important;
+  margin: 0px !important;
+  height: 4.5% !important;
+}
+
+.react-tabs__tab-panel {
+  height: 91.5% !important;
+}
+
+.react-tabs__tab {
+  color: #8e8e8e;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 700;
+}
+
+.react-tabs__tab:focus:after {
+  background: #dd8101 !important;
+  bottom: 0px !important;
+  height: 1.5px !important;
+}
+
+.test {
+  border-radius: 323.914px;
+  opacity: 0.4;
+  background: radial-gradient(50% 50% at 50% 50%,
+      #382704 0%,
+      rgba(255, 210, 120, 0) 100%);
+}
+
+.rank1-bg {
+  border: 0.291px solid #f7cb45;
+  background: linear-gradient(90deg,
+      rgba(247, 203, 69, 0.5) 3.56%,
+      rgba(247, 203, 69, 0.3) 47.88%,
+      rgba(247, 203, 69, 0.5) 98.11%);
+  backdrop-filter: blur(1.74609375px);
+}
+
+.rank2-bg {
+  border: 0.291px solid #eee;
+  background: linear-gradient(90deg,
+      rgba(238, 238, 238, 0.5) 3.56%,
+      rgba(238, 238, 238, 0.3) 47.88%,
+      rgba(238, 238, 238, 0.5) 98.11%);
+  backdrop-filter: blur(1.74609375px);
+}
+
+.rank3-bg {
+  border: 0.291px solid #d9b288;
+  background: linear-gradient(90deg,
+      rgba(217, 178, 136, 0.5) 3.56%,
+      rgba(217, 178, 136, 0.2) 47.88%,
+      rgba(217, 178, 136, 0.5) 98.11%);
+  backdrop-filter: blur(1.74609375px);
+}
+
+.ranks-bg {
+  border: 0.5px solid #372819;
+  background: linear-gradient(353deg,
+      rgba(192, 155, 100, 0.41) -40.83%,
+      rgba(192, 155, 100, 0) 118.76%);
+}
+
+.custom-divider::after {
+  content: "";
+  position: absolute;
+  right: 0;
+  top: 0;
+  height: 100%;
+  width: 2px;
+  background: linear-gradient(90deg,
+      rgba(40, 32, 22, 0) 10%,
+      #d4b588 50%,
+      rgba(40, 32, 22, 0) 89.9%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+}
+
+.tapered-line {
+  background: linear-gradient(to bottom,
+      rgba(40, 32, 22, 0.3),
+      #d4b588,
+      rgba(40, 32, 22, 0.3));
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  mask-image: radial-gradient(ellipse 50% 100% at center,
+      black 50%,
+      transparent 100%);
+  -webkit-mask-image: radial-gradient(ellipse 50% 100% at center,
+      black 50%,
+      transparent 100%);
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover,
+input:-webkit-autofill:focus,
+input:-webkit-autofill:active {
+
+  -webkit-text-fill-color: white !important;
+  transition: background-color 9999s ease-in-out 0s !important;
+}
+
+@media (max-width: 768px) {
+  input:-webkit-autofill,
+  input:-webkit-autofill:hover,
+  input:-webkit-autofill:focus,
+  input:-webkit-autofill:active {
+    -webkit-text-fill-color: #f9cd75 !important;
+    caret-color: #f9cd75;
+  }
+}
+
+.column-border {
+  position: relative;
+}
+
+.column-border::before,
+.column-border::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+}
+
+.column-border::before {
+  left: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(212, 181, 136, 0.6),
+    rgba(212, 181, 136, 0.1),
+    transparent
+  );
+}
+
+.column-border::after {
+  right: 0;
+  background: linear-gradient(
+    to bottom,
+    rgba(212, 181, 136, 0.6),
+    rgba(212, 181, 136, 0.1),
+    transparent
+  );
+}
+
+html, body {
+  overflow-x: hidden;
+}
+
+
+/* --- LIGHTER PLASMA ENERGY RING --- */
+
+/* 1. Spin Clockwise */
+@keyframes plasma-spin-cw {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+/* 2. Spin Counter-Clockwise */
+@keyframes plasma-spin-ccw {
+  from { transform: rotate(360deg); }
+  to { transform: rotate(0deg); }
+}
+
+/* 3. Lighter Pulse (Electric Blue/Cyan) */
+@keyframes plasma-pulse-light {
+  0%, 100% { 
+    opacity: 0.8; 
+    filter: drop-shadow(0 0 5px #0088ff); /* Medium Blue Base */
+  }
+  50% { 
+    opacity: 1; 
+    filter: drop-shadow(0 0 12px #00ffff); /* Bright Cyan Peak */
+  }
+}
+
+/* Utility Classes */
+.animate-plasma-cw {
+  transform-origin: center;
+  animation: plasma-spin-cw 8s linear infinite;
+}
+
+.animate-plasma-ccw {
+  transform-origin: center;
+  animation: plasma-spin-ccw 12s linear infinite;
+}
+
+.plasma-glow-light {
+  animation: plasma-pulse-light 2.5s ease-in-out infinite;
+}
+
+
+@keyframes marquee {
+  0% {
+    transform: translateX(100%);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+.animate-marquee {
+  display: inline-block;
+  animation: marquee 7s linear infinite;
+}
+
+.scrollContainer {
+  scroll-padding-top: 100px;
+}
+
+.scroll-ios {
+  -webkit-overflow-scrolling: touch;
+}
